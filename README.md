@@ -1,4 +1,4 @@
-# KRK Rokit Anti-Shutoff
+# KRK Rokit Anti-Shutoff - (MacOS)
 
 Python script to prevent KRK Rokit studio monitors from automatically shutting off by periodically playing an inaudible tone.
 
