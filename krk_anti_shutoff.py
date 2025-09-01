@@ -17,13 +17,13 @@ import sys
 from datetime import datetime
 
 class KRKAntiShutoff:
-    def __init__(self, frequency=50, duration=1.2, interval=25*60, volume=0.3):
+    def __init__(self, frequency=50, duration=3.0, interval=25*60, volume=0.8):
         """
         Args:
             frequency (int): Tone frequency in Hz (50Hz is inaudible, based on original Reddit hack)
-            duration (float): Tone duration in seconds (1.2s like original hack)
+            duration (float): Tone duration in seconds (3.0s for reliable wake-up)
             interval (int): Interval between tones in seconds (25 min default)
-            volume (float): Tone volume (0.3 default - subsonic frequencies are completely inaudible)
+            volume (float): Tone volume (0.8 default - higher volume for reliable wake-up)
         """
         self.frequency = frequency
         self.duration = duration
@@ -88,12 +88,12 @@ def main():
     parser = argparse.ArgumentParser(description='KRK Rokit Anti-Shutoff Script')
     parser.add_argument('-f', '--frequency', type=int, default=50,
                        help='Tone frequency in Hz (default: 50, like original Reddit hack)')
-    parser.add_argument('-d', '--duration', type=float, default=1.2,
-                       help='Tone duration in seconds (default: 1.2)')
+    parser.add_argument('-d', '--duration', type=float, default=3.0,
+                       help='Tone duration in seconds (default: 3.0)')
     parser.add_argument('-i', '--interval', type=int, default=25,
                        help='Interval between tones in minutes (default: 25)')
-    parser.add_argument('-v', '--volume', type=float, default=0.3,
-                       help='Tone volume (default: 0.3 - safe for subsonic frequencies)')
+    parser.add_argument('-v', '--volume', type=float, default=0.8,
+                       help='Tone volume (default: 0.8 - higher volume for reliable wake-up)')
     parser.add_argument('--test', action='store_true',
                        help='Test mode: play one tone and exit')
     
