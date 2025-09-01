@@ -2,6 +2,10 @@
 """
 KRK Rokit Anti-Shutoff Script
 Plays an inaudible tone periodically to prevent KRK monitors from shutting off automatically.
+
+Based on the original hack from r/audioengineering:
+https://www.reddit.com/r/audioengineering/comments/8hmsgh/i_made_a_hack_to_stop_krk_rokits_from_auto/
+Original implementation: https://pastebin.com/PwudtYbZ
 """
 
 import numpy as np
@@ -13,13 +17,13 @@ import sys
 from datetime import datetime
 
 class KRKAntiShutoff:
-    def __init__(self, frequency=10, duration=0.5, interval=25*60, volume=0.001):
+    def __init__(self, frequency=50, duration=1.2, interval=25*60, volume=0.3):
         """
         Args:
-            frequency (int): Tone frequency in Hz (10Hz is inaudible)
-            duration (float): Tone duration in seconds
+            frequency (int): Tone frequency in Hz (50Hz is inaudible, based on original Reddit hack)
+            duration (float): Tone duration in seconds (1.2s like original hack)
             interval (int): Interval between tones in seconds (25 min default)
-            volume (float): Tone volume (very low by default)
+            volume (float): Tone volume (0.3 default - subsonic frequencies are completely inaudible)
         """
         self.frequency = frequency
         self.duration = duration
@@ -82,14 +86,14 @@ class KRKAntiShutoff:
 
 def main():
     parser = argparse.ArgumentParser(description='KRK Rokit Anti-Shutoff Script')
-    parser.add_argument('-f', '--frequency', type=int, default=10,
-                       help='Tone frequency in Hz (default: 10)')
-    parser.add_argument('-d', '--duration', type=float, default=0.5,
-                       help='Tone duration in seconds (default: 0.5)')
+    parser.add_argument('-f', '--frequency', type=int, default=50,
+                       help='Tone frequency in Hz (default: 50, like original Reddit hack)')
+    parser.add_argument('-d', '--duration', type=float, default=1.2,
+                       help='Tone duration in seconds (default: 1.2)')
     parser.add_argument('-i', '--interval', type=int, default=25,
                        help='Interval between tones in minutes (default: 25)')
-    parser.add_argument('-v', '--volume', type=float, default=0.001,
-                       help='Tone volume (default: 0.001)')
+    parser.add_argument('-v', '--volume', type=float, default=0.3,
+                       help='Tone volume (default: 0.3 - safe for subsonic frequencies)')
     parser.add_argument('--test', action='store_true',
                        help='Test mode: play one tone and exit')
     

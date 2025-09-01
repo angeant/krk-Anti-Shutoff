@@ -68,10 +68,10 @@ tail -f ~/.krk_anti_shutoff/krk_anti_shutoff.log
 ## ⚙️ Configuration
 
 By default the script:
-- Plays a **10Hz** tone (inaudible)
-- For **0.5 seconds**
+- Plays a **50Hz** tone (subsonic, completely inaudible, based on original Reddit hack)
+- For **1.2 seconds**
 - Every **25 minutes**
-- At very low volume (**0.001**)
+- At moderate volume (**0.3** - safe for subsonic frequencies)
 
 You can change these values with parameters:
 - `--frequency` (-f): Frequency in Hz
@@ -101,7 +101,7 @@ launchctl load ~/Library/LaunchAgents/com.user.krk-anti-shutoff.plist
 
 ## 🎯 How Does It Work?
 
-The script plays a 10Hz tone (subsonic frequency, inaudible to humans) every 25 minutes. This signal is sufficient for KRK monitors to detect activity and prevent them from entering automatic standby mode.
+The script plays a 50Hz tone (subsonic frequency, completely inaudible to humans) every 25 minutes. This implementation is based on the original Reddit hack from r/audioengineering. The signal is strong enough for KRK monitors to detect activity and prevent them from entering automatic standby mode, while remaining completely silent to human ears.
 
 ## 📁 Created Files
 
