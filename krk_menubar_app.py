@@ -13,7 +13,13 @@ from datetime import datetime, timedelta
 
 class KRKMenuBarApp(rumps.App):
     def __init__(self):
-        super(KRKMenuBarApp, self).__init__("🎵", quit_button=None)
+        super(KRKMenuBarApp, self).__init__(
+            "🎵", 
+            quit_button=None,
+            menu=[],
+            icon=None,
+            template=None
+        )
         
         # Default settings that worked for your speakers
         self.frequency = 50  # Hz

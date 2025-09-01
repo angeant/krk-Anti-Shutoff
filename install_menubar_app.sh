@@ -2,7 +2,7 @@
 # Install KRK MenuBar App to start automatically on login
 
 APP_NAME="KRK Anti-Shutoff"
-SCRIPT_PATH="$(pwd)/krk_menubar_app.py"
+SCRIPT_PATH="$(pwd)/krk_simple_menubar.py"
 PLIST_PATH="$HOME/Library/LaunchAgents/com.krk.antishutoff.plist"
 
 echo "🎵 Installing KRK Anti-Shutoff MenuBar App..."
@@ -24,10 +24,21 @@ cat > "$PLIST_PATH" << EOF
     <true/>
     <key>KeepAlive</key>
     <true/>
+    <key>ProcessType</key>
+    <string>Interactive</string>
+    <key>LimitLoadToSessionType</key>
+    <array>
+        <string>Aqua</string>
+    </array>
     <key>StandardOutPath</key>
     <string>$HOME/Library/Logs/krk_antishutoff.log</string>
     <key>StandardErrorPath</key>
     <string>$HOME/Library/Logs/krk_antishutoff_error.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>LSUIElement</key>
+        <string>1</string>
+    </dict>
 </dict>
 </plist>
 EOF
@@ -38,7 +49,7 @@ launchctl load "$PLIST_PATH"
 echo "✅ KRK Anti-Shutoff MenuBar App installed!"
 echo "📁 LaunchAgent file: $PLIST_PATH"
 echo "🚀 The app will start automatically on next login"
-echo "🎯 To start now, run: python3 krk_menubar_app.py"
+echo "🎯 To start now, run: python3 krk_simple_menubar.py"
 echo ""
 echo "To uninstall later, run:"
 echo "  launchctl unload '$PLIST_PATH'"

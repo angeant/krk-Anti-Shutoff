@@ -15,15 +15,15 @@
 
 ## 🎯 Quick Start (Recommended)
 
-### MenuBar App (GUI)
+### MenuBar App (GUI) - ⭐ RECOMMENDED
 ```bash
 # Install dependencies
 pip3 install --break-system-packages numpy sounddevice rumps
 
-# Run the menubar app
-python3 krk_menubar_app.py
+# Run the simple menubar app (background-only, no dock)
+python3 krk_simple_menubar.py
 
-# Optional: Install to auto-start on login
+# Install to auto-start on login (stays in menu bar only)
 ./install_menubar_app.sh
 ```
 
@@ -49,6 +49,25 @@ The MenuBar app appears as a 🎵 icon in your system tray (top-right corner).
 ### Status Indicators:
 - 🎵 = App running but protection stopped
 - 🎵🟢 = Protection active, monitors staying awake
+
+### 🚀 Auto-Start Configuration:
+```bash
+# Install to start automatically with macOS (stays in menu bar only)
+./install_menubar_app.sh
+
+# Check if running
+launchctl list | grep krk
+
+# Manual start/stop
+launchctl load ~/Library/LaunchAgents/com.krk.antishutoff.plist
+launchctl unload ~/Library/LaunchAgents/com.krk.antishutoff.plist
+```
+
+**Key Benefits:**
+- ✅ **No Dock Icon** - App configured with `LSUIElement=1`
+- ✅ **Background Only** - Never interferes with dock
+- ✅ **Auto-Start** - Launches automatically on login
+- ✅ **Persistent** - Keeps running even if "closed"
 
 ## 📋 Command Line Usage
 
@@ -145,7 +164,9 @@ This implementation is based on the original Reddit hack from r/audioengineering
 ## 📁 Project Files
 
 ### Main Applications:
-- `krk_menubar_app.py` - 🎛️ MenuBar GUI application (recommended)
+- `krk_simple_menubar.py` - 🎛️ **Simple MenuBar app (RECOMMENDED)** - Background only, no dock
+- `krk_menubar_app.py` - 🎛️ Original MenuBar GUI application  
+- `krk_background_app.py` - 🔧 Advanced background version
 - `krk_anti_shutoff.py` - 📟 Command-line version
 - `install_menubar_app.sh` - 🚀 Auto-start installer for MenuBar app
 

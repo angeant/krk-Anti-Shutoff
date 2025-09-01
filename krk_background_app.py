@@ -14,9 +14,7 @@ import os
 import sys
 from datetime import datetime, timedelta
 
-# Hide from dock by setting LSUIElement
-import AppKit
-AppKit.NSApp.setActivationPolicy_(AppKit.NSApplicationActivationPolicyAccessory)
+# Import AppKit for background mode (will be configured after rumps init)
 
 class KRKBackgroundApp(rumps.App):
     def __init__(self):
@@ -211,10 +209,6 @@ To fully quit: Use "❌ Quit" from menu"""
             self.next_tone_item.title = "⏰ Next tone: --"
 
 if __name__ == "__main__":
-    # Ensure app runs in background mode
-    if hasattr(AppKit.NSApp, 'setActivationPolicy_'):
-        AppKit.NSApp.setActivationPolicy_(AppKit.NSApplicationActivationPolicyAccessory)
-    
     app = KRKBackgroundApp()
     print("🎵 KRK Anti-Shutoff running in background mode (menu bar only)")
     print("   Look for the 🎵 icon in your menu bar")
